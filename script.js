@@ -16,34 +16,34 @@ function checkEventId(event) {
 
     switch (id) {
         case "0":
-            updateCurrentExpression("0");
+            updateCurrentNumber("0");
             break;
         case "1":
-            updateCurrentExpression("1");
+            updateCurrentNumber("1");
             break;
         case "2":
-            updateCurrentExpression("2");
+            updateCurrentNumber("2");
             break;
         case "3":
-            updateCurrentExpression("3");
+            updateCurrentNumber("3");
             break;
         case "4":
-            updateCurrentExpression("4");
+            updateCurrentNumber("4");
             break;
         case "5":
-            updateCurrentExpression("5");
+            updateCurrentNumber("5");
             break;
         case "6":
-            updateCurrentExpression("6");
+            updateCurrentNumber("6");
             break;
         case "7":
-            updateCurrentExpression("7");
+            updateCurrentNumber("7");
             break;
         case "8":
-            updateCurrentExpression("8");
+            updateCurrentNumber("8");
             break;
         case "9":
-            updateCurrentExpression("9");
+            updateCurrentNumber("9");
             break;
         case "ac":
             break;
@@ -60,17 +60,28 @@ function checkEventId(event) {
         case "add":
             break;
         case "dot":
+            updateCurrentNumber(".");
             break;
         case "equal":
             break;
     }
 }
 
-function updateCurrentExpression(symbol) {
-    stringFormattedCurrentFirstNum += symbol;
+function updateCurrentNumber(symbol) {
+    if (currentOperator.length === 0) {
+        stringFormattedCurrentFirstNum += symbol;
+    }
+    else {
+        stringFormattedCurrentSecondNum += symbol;
+    }
+    updateDOM();
+}
+
+function updateCurrentOperator(operator) {
+    currentOperator = operator;
     updateDOM();
 }
 
 function updateDOM() {
-    currentExpressionNode.textContent = stringFormattedCurrentFirstNum;
+    currentExpressionNode.textContent = stringFormattedCurrentFirstNum + currentOperator + stringFormattedCurrentSecondNum;
 }
