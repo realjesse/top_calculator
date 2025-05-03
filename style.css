@@ -72,6 +72,8 @@ body, html {
 	gap: 7px;
 }
 
+/* Buttons */
+
 .button {
 	width: 75px;
 	height: 75px;
@@ -109,4 +111,20 @@ body, html {
 
 .clickable .orange:active {
 	background-color: rgb(255, 220, 168)
+}
+
+/* End of buttons */
+
+.number_container {
+	height: 50px;
+	width: 100%;
+	text-align: right;
+	direction: rtl;
+	font-size: 3rem;
+}
+
+.previous.number_container {
+	font-size: 2rem;
+	color: rgb(109, 109, 109);
+	height: 30px;
 }
