@@ -46,3 +46,21 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* End of reset */
+
+body, html {
+	min-height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#calculator {
+	display: flex;
+	flex-direction:column;
+}
+
+.row {
+	display: flex;
+}
