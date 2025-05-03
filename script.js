@@ -14,47 +14,42 @@ calculatorNode.addEventListener('click', checkEventId)
 function checkEventId(event) {
     id = event.target.id;
     if (id === "0") {
-        updateCurrentExpressionArray("0");
+        updateCurrentExpression("0");
     }
     else if (id === "1") {
-        updateCurrentExpressionArray("1");
+        updateCurrentExpression("1");
     }
     else if (id === "2") {
-        updateCurrentExpressionArray("2");
+        updateCurrentExpression("2");
     }
     else if (id === "3") {
-        updateCurrentExpressionArray("3");
+        updateCurrentExpression("3");
     }
     else if (id === "4") {
-        updateCurrentExpressionArray("4");
+        updateCurrentExpression("4");
     }
     else if (id === "5") {
-        updateCurrentExpressionArray("5");
+        updateCurrentExpression("5");
     }
     else if (id === "6") {
-        updateCurrentExpressionArray("6");
+        updateCurrentExpression("6");
     }
     else if (id === "7") {
-        updateCurrentExpressionArray("7");
+        updateCurrentExpression("7");
     }
     else if (id === "8") {
-        updateCurrentExpressionArray("8");
+        updateCurrentExpression("8");
     }
     else if (id === "9") {
-        updateCurrentExpressionArray("9");
+        updateCurrentExpression("9");
     }
 }
 
-function updateCurrentExpressionArray(symbol) {
-    currentExpressionArray.push(symbol);
+function updateCurrentExpression(symbol) {
+    stringFormattedCurrentFirstNum += symbol;
     updateDOM();
 }
 
 function updateDOM() {
-    stringFormattedExpression = "";
-    currentExpressionArray.forEach((symbol) => {
-        stringFormattedExpression += symbol;
-    })
-
-    currentExpressionNode.textContent = stringFormattedExpression;
+    currentExpressionNode.textContent = stringFormattedCurrentFirstNum;
 }
