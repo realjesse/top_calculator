@@ -1,4 +1,5 @@
 const calculatorNode = document.querySelector("#calculator");
+let currentExpressionArray = [];
 
 calculatorNode.addEventListener('click', event => {
     if (event.target.classList.contains("button")) {
@@ -6,7 +7,7 @@ calculatorNode.addEventListener('click', event => {
     }
 })
 
-function checkClass(event) {
+function checkEventId(event) {
     id = event.target.id;
     if (id === "0") {
         null
@@ -38,4 +39,12 @@ function checkClass(event) {
     else if (id === "9") {
         null
     }
+}
+
+function updateCurrentExpressionArray(symbol) {
+    null
+}
+
+function updateDom() {
+    null
 }
