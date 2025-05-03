@@ -64,3 +64,15 @@ body, html {
 .row {
 	display: flex;
 }
+
+.item {
+	width: 75px;
+	height: 75px;
+	background-color: rgb(36, 29, 29);
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: rgb(255, 255, 255);
+	font-size: 2rem;
+}
