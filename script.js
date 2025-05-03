@@ -52,12 +52,16 @@ function checkEventId(event) {
         case "percent":
             break;
         case "divide":
+            updateCurrentOperator("÷");
             break;
         case "multiply":
+            updateCurrentOperator("×");
             break;
-        case "substract":
+        case "subtract":
+            updateCurrentOperator("-");
             break;
         case "add":
+            updateCurrentOperator("+");
             break;
         case "dot":
             updateCurrentNumber(".");
