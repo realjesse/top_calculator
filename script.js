@@ -1,16 +1,13 @@
 const calculatorNode = document.querySelector("#calculator");
+const currentExpressionNode = document.querySelector(".current");
 let currentExpressionArray = [];
 
-calculatorNode.addEventListener('click', event => {
-    if (event.target.classList.contains("button")) {
-        console.log("button click!");
-    }
-})
+calculatorNode.addEventListener('click', checkEventId)
 
 function checkEventId(event) {
     id = event.target.id;
     if (id === "0") {
-        null
+        updateCurrentExpressionArray("0");
     }
     else if (id === "1") {
         null
@@ -42,9 +39,15 @@ function checkEventId(event) {
 }
 
 function updateCurrentExpressionArray(symbol) {
-    null
+    currentExpressionArray.push(symbol);
+    updateDOM();
 }
 
-function updateDom() {
-    null
+function updateDOM() {
+    stringFormattedExpression = "";
+    currentExpressionArray.forEach((symbol) => {
+        stringFormattedExpression += symbol;
+    })
+
+    currentExpressionNode.textContent = stringFormattedExpression;
 }
