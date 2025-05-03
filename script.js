@@ -45,6 +45,24 @@ function checkEventId(event) {
         case "9":
             updateCurrentExpression("9");
             break;
+        case "ac":
+            break;
+        case "switch_sign":
+            break;
+        case "percent":
+            break;
+        case "divide":
+            break;
+        case "multiply":
+            break;
+        case "substract":
+            break;
+        case "add":
+            break;
+        case "dot":
+            break;
+        case "equal":
+            break;
     }
 }
 
