@@ -55,7 +55,7 @@ function checkEventId(event) {
         case "percent":
             break;
         case "divide":
-            updateCurrentOperator("÷");
+            updateCurrentOperator("&divide;");
             break;
         case "multiply":
             updateCurrentOperator("&times;");
