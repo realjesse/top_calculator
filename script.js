@@ -1,5 +1,8 @@
 const calculatorNode = document.querySelector("#calculator");
-const currentExpressionNode = document.querySelector(".current");
+const currentFirstNumNode = document.querySelector(".currentFirstNum");
+const currentOperatorNode = document.querySelector(".currentOperator");
+const currentSecondNumNode = document.querySelector(".currentSecondNum");
+
 
 // Holds values for calculation
 let stringFormattedCurrentFirstNum = "";
@@ -89,5 +92,7 @@ function updateCurrentOperator(operator) {
 }
 
 function updateDOM() {
-    currentExpressionNode.textContent = stringFormattedCurrentFirstNum + currentOperator + stringFormattedCurrentSecondNum;
+    currentFirstNumNode.textContent = stringFormattedCurrentFirstNum;
+    currentOperatorNode.textContent = currentOperator;
+    currentSecondNumNode.textContent = stringFormattedCurrentSecondNum;
 }

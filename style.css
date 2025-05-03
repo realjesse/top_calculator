@@ -117,7 +117,6 @@ body, html {
 
 .number_container {
 	height: 50px;
-	width: 100%;
 	text-align: right;
 	direction: rtl;
 	font-size: 3rem;
@@ -127,4 +126,9 @@ body, html {
 	font-size: 2rem;
 	color: rgb(109, 109, 109);
 	height: 30px;
+}
+
+.current {
+	justify-content: flex-end;
+	flex-grow: 0;
 }
