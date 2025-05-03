@@ -58,6 +58,7 @@ body, html {
 	font-weight: 400;
 	font-style: normal;
 	background-color: rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
 }
 
 #calculator {
@@ -79,6 +80,17 @@ body, html {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	color: rgb(255, 255, 255);
 	font-size: 2rem;
+}
+
+.black .item {
+	background-color: rgb(0, 0, 0);
+}
+
+.grey {
+	background-color: rgb(109, 109, 109);
+}
+
+.orange {
+	background-color: rgb(255, 163, 24);
 }
