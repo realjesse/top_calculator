@@ -1,3 +1,6 @@
+// A better way might be doing an actual number var which holds the first num and then another for second one,
+// instead of working with holding everything in a list.  Then have logic to do things when operators are clicked
+
 const calculatorNode = document.querySelector("#calculator");
 const currentExpressionNode = document.querySelector(".current");
 let currentExpressionArray = [];
@@ -10,31 +13,31 @@ function checkEventId(event) {
         updateCurrentExpressionArray("0");
     }
     else if (id === "1") {
-        null
+        updateCurrentExpressionArray("1");
     }
     else if (id === "2") {
-        null
+        updateCurrentExpressionArray("2");
     }
     else if (id === "3") {
-        null
+        updateCurrentExpressionArray("3");
     }
     else if (id === "4") {
-        null
+        updateCurrentExpressionArray("4");
     }
     else if (id === "5") {
-        null
+        updateCurrentExpressionArray("5");
     }
     else if (id === "6") {
-        null
+        updateCurrentExpressionArray("6");
     }
     else if (id === "7") {
-        null
+        updateCurrentExpressionArray("7");
     }
     else if (id === "8") {
-        null
+        updateCurrentExpressionArray("8");
     }
     else if (id === "9") {
-        null
+        updateCurrentExpressionArray("9");
     }
 }
 
