@@ -82,8 +82,10 @@ function updateCurrentNumber(symbol) {
 }
 
 function updateCurrentOperator(operator) {
-    currentOperator = operator;
-    updateDOM();
+    if (stringFormattedCurrentFirstNum.length > 0) {
+        currentOperator = operator;
+        updateDOM();
+    }
 }
 
 function updateDOM() {
