@@ -58,7 +58,7 @@ function checkEventId(event) {
             updateCurrentOperator("÷");
             break;
         case "multiply":
-            updateCurrentOperator("×");
+            updateCurrentOperator("&times;");
             break;
         case "subtract":
             updateCurrentOperator("-");
@@ -93,6 +93,6 @@ function updateCurrentOperator(operator) {
 
 function updateDOM() {
     currentFirstNumNode.textContent = stringFormattedCurrentFirstNum;
-    currentOperatorNode.textContent = currentOperator;
+    currentOperatorNode.innerHTML = `<span style='font-size: 3rem'>${currentOperator}</span>`;
     currentSecondNumNode.textContent = stringFormattedCurrentSecondNum;
 }
