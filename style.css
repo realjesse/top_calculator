@@ -83,6 +83,14 @@ body, html {
 	font-size: 2rem;
 }
 
+.item:hover {
+	cursor:default;
+}
+
+.clickable .item:active {
+	background-color: rgb(109, 109, 109);
+}
+
 .black .item {
 	background-color: rgb(0, 0, 0);
 }
@@ -91,6 +99,14 @@ body, html {
 	background-color: rgb(109, 109, 109);
 }
 
+.clickable .grey:active {
+	background-color: rgb(168, 168, 168)
+}
+
 .orange {
 	background-color: rgb(255, 163, 24);
+}
+
+.clickable .orange:active {
+	background-color: rgb(255, 220, 168)
 }
