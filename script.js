@@ -1,9 +1,13 @@
-// A better way might be doing an actual number var which holds the first num and then another for second one,
-// instead of working with holding everything in a list.  Then have logic to do things when operators are clicked
-
 const calculatorNode = document.querySelector("#calculator");
 const currentExpressionNode = document.querySelector(".current");
-let currentExpressionArray = [];
+
+// Holds values for calculation
+let stringFormattedCurrentFirstNum = "";
+let currentOperator = "";
+let stringFormattedCurrentSecondNum = "";
+let stringFormattedPreviousFirstNum = "";
+let previousOperator = "";
+let stringFormattedPreviousSecondNum = "";
 
 calculatorNode.addEventListener('click', checkEventId)
 
