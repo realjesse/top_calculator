@@ -108,27 +108,29 @@ function operate() {
     // Check if there is a valid expression, implicitly must be if the second
     // number is greater than 0
     if (stringFormattedCurrentSecondNum.length > 0) {
+        let total = 0;
+        const [floatFormattedCurrentFirstNum, floatFormattedCurrentSecondNum] = 
+        convertTwoVarsToFloat(stringFormattedCurrentFirstNum, stringFormattedCurrentSecondNum);
+
         // Check operator symbol
         switch (currentOperator) {
             case "+":
-                // Do the mathematical operation
-                const floatFormattedCurrentFirstNum = parseFloat(stringFormattedCurrentFirstNum);
-                const floatFormattedCurrentSecondNum = parseFloat(stringFormattedCurrentSecondNum);
-                const total = floatFormattedCurrentFirstNum + floatFormattedCurrentSecondNum;
-
-                updatePreviousValues();
-                updateCurrentExpression(total);
-
-                updateDOM();
-                
+                total = floatFormattedCurrentFirstNum + floatFormattedCurrentSecondNum;
                 break;
             case "-":
+                total = floatFormattedCurrentFirstNum - floatFormattedCurrentSecondNum;
                 break;
             case "&times;":
+                total = floatFormattedCurrentFirstNum * floatFormattedCurrentSecondNum;
                 break;
-            case "&times;":
+            case "&divide;":
+                total = floatFormattedCurrentFirstNum / floatFormattedCurrentSecondNum;
                 break;
         }
+
+        updatePreviousValues();
+        updateCurrentExpression(total);
+        updateDOM();
     }
     return;
 }
@@ -147,6 +149,10 @@ function updateCurrentExpression(total) {
     stringFormattedCurrentFirstNum = total.toString();
     currentOperator = "";
     stringFormattedCurrentSecondNum = "";
+}
+
+function convertTwoVarsToFloat(variableOne, variableTwo) {
+    return [parseFloat(variableOne), parseFloat(variableTwo)];
 }
 
 function updateDOM() {
