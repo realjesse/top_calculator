@@ -5,7 +5,7 @@ const currentSecondNumNode = document.querySelector(".currentSecondNum");
 
 
 // Holds values for calculation
-let stringFormattedCurrentFirstNum = "";
+let stringFormattedCurrentFirstNum = "0";
 let currentOperator = "";
 let stringFormattedCurrentSecondNum = "";
 let stringFormattedPreviousFirstNum = "";
@@ -76,7 +76,13 @@ function checkEventId(event) {
 
 function updateCurrentNumber(symbol) {
     if (currentOperator.length === 0) {
-        stringFormattedCurrentFirstNum += symbol;
+        // Check if the first number is zero, if so replace value
+        if (stringFormattedCurrentFirstNum === "0") {
+            stringFormattedCurrentFirstNum = symbol;
+        }
+        else {
+            stringFormattedCurrentFirstNum += symbol;
+        }
     }
     else {
         stringFormattedCurrentSecondNum += symbol;
@@ -89,6 +95,10 @@ function updateCurrentOperator(operator) {
         currentOperator = operator;
         updateDOM();
     }
+}
+
+function operate() {
+    return;
 }
 
 function updateDOM() {
