@@ -122,13 +122,13 @@ body, html {
 	font-size: 3rem;
 }
 
-.previous.number_container {
+.previous .number_container {
 	font-size: 2rem;
 	color: rgb(109, 109, 109);
 	height: 30px;
 }
 
-.current {
+.expression_container {
 	justify-content: flex-end;
 	flex-grow: 0;
 }

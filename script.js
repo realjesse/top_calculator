@@ -2,6 +2,9 @@ const calculatorNode = document.querySelector("#calculator");
 const currentFirstNumNode = document.querySelector(".currentFirstNum");
 const currentOperatorNode = document.querySelector(".currentOperator");
 const currentSecondNumNode = document.querySelector(".currentSecondNum");
+const previousFirstNumNode = document.querySelector(".previousFirstNum");
+const previousOperatorNode = document.querySelector(".previousOperator");
+const previousSecondNumNode = document.querySelector(".previousSecondNum");
 
 
 // Holds values for calculation
@@ -70,11 +73,13 @@ function checkEventId(event) {
             updateCurrentNumber(".");
             break;
         case "equal":
+            operate();
             break;
     }
 }
 
 function updateCurrentNumber(symbol) {
+    // Check if there is an operator, if not edit first number
     if (currentOperator.length === 0) {
         // Check if the first number is zero, if so replace value
         if (stringFormattedCurrentFirstNum === "0") {
@@ -84,6 +89,7 @@ function updateCurrentNumber(symbol) {
             stringFormattedCurrentFirstNum += symbol;
         }
     }
+    // If operator, then edit second number
     else {
         stringFormattedCurrentSecondNum += symbol;
     }
@@ -91,6 +97,7 @@ function updateCurrentNumber(symbol) {
 }
 
 function updateCurrentOperator(operator) {
+    // Edit to remove check, will always have a number
     if (stringFormattedCurrentFirstNum.length > 0) {
         currentOperator = operator;
         updateDOM();
@@ -98,11 +105,49 @@ function updateCurrentOperator(operator) {
 }
 
 function operate() {
+    // Check if there is a valid expression, implicitly must be if the second
+    // number is greater than 0
+    if (stringFormattedCurrentSecondNum.length > 0) {
+        // Check operator symbol
+        switch (currentOperator) {
+            case "+":
+                // Do the mathematical operation
+                const floatFormattedCurrentFirstNum = parseFloat(stringFormattedCurrentFirstNum);
+                const floatFormattedCurrentSecondNum = parseFloat(stringFormattedCurrentSecondNum);
+                const total = floatFormattedCurrentFirstNum + floatFormattedCurrentSecondNum;
+
+                // Update previous (above) values
+                stringFormattedPreviousFirstNum = stringFormattedCurrentFirstNum;
+                previousOperator = currentOperator;
+                stringFormattedPreviousSecondNum = stringFormattedCurrentSecondNum;
+
+                // Update current values
+                stringFormattedCurrentFirstNum = total.toString();
+                currentOperator = "";
+                stringFormattedCurrentSecondNum = "";
+
+                updateDOM();
+                
+                break;
+            case "-":
+                break;
+            case "&times;":
+                break;
+            case "&times;":
+                break;
+        }
+    }
     return;
 }
 
 function updateDOM() {
+    // Update current expression DOM
     currentFirstNumNode.textContent = stringFormattedCurrentFirstNum;
     currentOperatorNode.innerHTML = `<span style='font-size: 3rem'>${currentOperator}</span>`;
     currentSecondNumNode.textContent = stringFormattedCurrentSecondNum;
+
+    // Update previous expression DOM
+    previousFirstNumNode.textContent = stringFormattedPreviousFirstNum;
+    previousOperatorNode.innerHTML = `<span style='font-size: 2rem'>${previousOperator}</span>`;
+    previousSecondNumNode.textContent = stringFormattedPreviousSecondNum;
 }
