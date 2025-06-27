@@ -116,15 +116,8 @@ function operate() {
                 const floatFormattedCurrentSecondNum = parseFloat(stringFormattedCurrentSecondNum);
                 const total = floatFormattedCurrentFirstNum + floatFormattedCurrentSecondNum;
 
-                // Update previous (above) values
-                stringFormattedPreviousFirstNum = stringFormattedCurrentFirstNum;
-                previousOperator = currentOperator;
-                stringFormattedPreviousSecondNum = stringFormattedCurrentSecondNum;
-
-                // Update current values
-                stringFormattedCurrentFirstNum = total.toString();
-                currentOperator = "";
-                stringFormattedCurrentSecondNum = "";
+                updatePreviousValues();
+                updateCurrentExpression(total);
 
                 updateDOM();
                 
@@ -138,6 +131,22 @@ function operate() {
         }
     }
     return;
+}
+
+// Always use before updateCurrentExpression()
+// Used after an operation
+function updatePreviousValues() {
+    stringFormattedPreviousFirstNum = stringFormattedCurrentFirstNum;
+    previousOperator = currentOperator;
+    stringFormattedPreviousSecondNum = stringFormattedCurrentSecondNum;
+}
+
+// Always use after updatePreviousValues()
+// Used after an operation
+function updateCurrentExpression(total) {
+    stringFormattedCurrentFirstNum = total.toString();
+    currentOperator = "";
+    stringFormattedCurrentSecondNum = "";
 }
 
 function updateDOM() {
