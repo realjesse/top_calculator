@@ -82,8 +82,8 @@ function checkEventId(event) {
 function updateCurrentNumber(symbol) {
     // Check if there is an operator, if not edit first number
     if (currentOperator.length === 0) {
-        // Check if the first number is zero, if so replace value
-        if (stringFormattedCurrentFirstNum === "0") {
+        // Check if the first number is zero or undefined, if so replace value
+        if (stringFormattedCurrentFirstNum === "0" || stringFormattedCurrentFirstNum === "Undefined") {
             stringFormattedCurrentFirstNum = symbol;
         }
         else {
@@ -98,11 +98,13 @@ function updateCurrentNumber(symbol) {
 }
 
 function updateCurrentOperator(operator) {
-    // Edit to remove check, will always have a number
-    if (stringFormattedCurrentFirstNum.length > 0) {
-        currentOperator = operator;
-        updateDOM();
+    // If Undefined, then do not change operator, simply exit
+    if (stringFormattedCurrentFirstNum === "Undefined") {
+        return;
     }
+
+    currentOperator = operator;
+    updateDOM();
 }
 
 function operate() {
