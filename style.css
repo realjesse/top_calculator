@@ -118,7 +118,6 @@ body, html {
 .number_container {
 	height: 50px;
 	text-align: right;
-	direction: rtl;
 	font-size: 3rem;
 }
 

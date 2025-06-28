@@ -82,16 +82,34 @@ function checkEventId(event) {
 function updateCurrentNumber(symbol) {
     // Check if there is an operator, if not edit first number
     if (currentOperator.length === 0) {
+        // If the first number already has a period, then exit function
+        if (symbol === "." && stringFormattedCurrentFirstNum.includes(".")) {
+            return;
+        }
+
         // Check if the first number is zero or undefined, if so replace value
         if (stringFormattedCurrentFirstNum === "0" || stringFormattedCurrentFirstNum === "Undefined") {
-            stringFormattedCurrentFirstNum = symbol;
+            // If adding a period, then keep 0 and append period
+            if (symbol === ".") {
+                stringFormattedCurrentFirstNum += ".";
+            }
+            // Else, replace number
+            else {
+                stringFormattedCurrentFirstNum = symbol;
+            }
         }
+        // If there is a number present, simply append
         else {
             stringFormattedCurrentFirstNum += symbol;
         }
     }
     // If operator, then edit second number
     else {
+        // If the second number already has a period, then exit function
+        if (symbol === "." && stringFormattedCurrentSecondNum.includes(".")) {
+            return;
+        }
+
         stringFormattedCurrentSecondNum += symbol;
     }
     updateDOM();
