@@ -52,6 +52,7 @@ function checkEventId(event) {
             updateCurrentNumber("9");
             break;
         case "ac":
+            clearValues();
             break;
         case "switch_sign":
             break;
@@ -124,7 +125,13 @@ function operate() {
                 total = floatFormattedCurrentFirstNum * floatFormattedCurrentSecondNum;
                 break;
             case "&divide;":
-                total = floatFormattedCurrentFirstNum / floatFormattedCurrentSecondNum;
+                // Check if they divided by 0
+                if (floatFormattedCurrentSecondNum === 0) {
+                    total = "Undefined";
+                }
+                else {
+                    total = floatFormattedCurrentFirstNum / floatFormattedCurrentSecondNum;
+                }
                 break;
         }
 
@@ -153,6 +160,17 @@ function updateCurrentExpression(total) {
 
 function convertTwoVarsToFloat(variableOne, variableTwo) {
     return [parseFloat(variableOne), parseFloat(variableTwo)];
+}
+
+function clearValues() {
+    stringFormattedCurrentFirstNum = "0";
+    currentOperator = "";
+    stringFormattedCurrentSecondNum = "";
+    stringFormattedPreviousFirstNum = "";
+    previousOperator = "";
+    stringFormattedPreviousSecondNum = "";
+
+    updateDOM();
 }
 
 function updateDOM() {
