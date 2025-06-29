@@ -5,6 +5,7 @@ const currentSecondNumNode = document.querySelector(".currentSecondNum");
 const previousFirstNumNode = document.querySelector(".previousFirstNum");
 const previousOperatorNode = document.querySelector(".previousOperator");
 const previousSecondNumNode = document.querySelector(".previousSecondNum");
+const backspaceNode = document.querySelector("#ac");
 
 
 // Holds values for calculation
@@ -52,7 +53,15 @@ function checkEventId(event) {
             updateCurrentNumber("9");
             break;
         case "ac":
-            clearValues();
+            // Check if there is a previous expression, if so, allow user to clear it
+            // Or if the expression is 0, catch and allow to clear
+            if (stringFormattedPreviousFirstNum.length > 0 || stringFormattedCurrentFirstNum === "0") {
+                clearValues();
+            }
+            // If there an expression in the making, then allow backspace functionality
+            else {
+                backspace();
+            }
             break;
         case "switch_sign":
             break;
@@ -89,6 +98,10 @@ function updateCurrentNumber(symbol) {
 
         // Check if the first number is zero or undefined, if so replace value
         if (stringFormattedCurrentFirstNum === "0" || stringFormattedCurrentFirstNum === "Undefined") {
+            // Update AC symbol to become backspace
+            backspaceNode.textContent = "\u232B";
+            backspaceNode.style.fontSize = "3rem";
+
             // If adding a period, then keep 0 and append period
             if (symbol === ".") {
                 stringFormattedCurrentFirstNum += ".";
@@ -155,6 +168,10 @@ function operate() {
                 break;
         }
 
+        // Update backspace to become AC
+        backspaceNode.textContent = "AC";
+        backspaceNode.style.fontSize = "2rem";
+
         updatePreviousValues();
         updateCurrentExpression(total);
         updateDOM();
@@ -189,6 +206,26 @@ function clearValues() {
     stringFormattedPreviousFirstNum = "";
     previousOperator = "";
     stringFormattedPreviousSecondNum = "";
+
+    updateDOM();
+}
+
+function backspace() {
+    if (stringFormattedCurrentSecondNum.length > 0) {
+        stringFormattedCurrentSecondNum = stringFormattedCurrentSecondNum.slice(0, -1);
+    }
+    else if (currentOperator != "") {
+        currentOperator = "";
+    }
+    else {
+        stringFormattedCurrentFirstNum = stringFormattedCurrentFirstNum.slice(0, -1);
+        if (stringFormattedCurrentFirstNum.length === 0) {
+            stringFormattedCurrentFirstNum = "0";
+            // Update backspace to become AC
+            backspaceNode.textContent = "AC";
+            backspaceNode.style.fontSize = "2rem";
+        }
+    }
 
     updateDOM();
 }
