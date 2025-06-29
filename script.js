@@ -17,9 +17,16 @@ let previousOperator = "";
 let stringFormattedPreviousSecondNum = "";
 
 calculatorNode.addEventListener('click', checkEventId)
+document.addEventListener('keydown', checkEventId)
 
 function checkEventId(event) {
-    id = event.target.id;
+    let id = null;
+    if (event.type === "click") {
+        id = event.target.id;
+    }
+    else if (event.type === "keydown") {
+        id = event.key;
+    }
 
     switch (id) {
         case "0":
@@ -84,6 +91,28 @@ function checkEventId(event) {
             break;
         case "equal":
             operate();
+            break;
+        // Keyboard inputs
+        case "Backspace":
+            backspace();
+            break;
+        case "Enter":
+            operate();
+            break;
+        case "+":
+            updateCurrentOperator("+");
+            break;
+        case "-":
+            updateCurrentOperator("-");
+            break;
+        case "*":
+            updateCurrentOperator("&times;");
+            break;
+        case "x":
+            updateCurrentOperator("&times;");
+            break;
+        case "/":
+            updateCurrentOperator("&divide;");
             break;
     }
 }
