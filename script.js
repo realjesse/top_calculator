@@ -133,8 +133,7 @@ function updateCurrentNumber(symbol) {
         // Check if the first number is zero or undefined, if so replace value
         if (stringFormattedCurrentFirstNum === "0" || stringFormattedCurrentFirstNum === "Undefined") {
             // Update AC symbol to become backspace
-            backspaceNode.textContent = "\u232B";
-            backspaceNode.style.fontSize = "3rem";
+            toggleBackspaceSymbol();
 
             // If adding a period, then keep 0 and append period
             if (symbol === ".") {
@@ -163,10 +162,18 @@ function updateCurrentNumber(symbol) {
 }
 
 function updateCurrentOperator(operator) {
-    // If Undefined, then do not change operator, simply exit
+    // If first number is Undefined, then do not change operator, simply exit
     if (stringFormattedCurrentFirstNum === "Undefined") {
         return;
     }
+    // If there is previous expression, clear it all values but save current first num
+    if (stringFormattedPreviousFirstNum.length > 0) {
+        // Update AC symbol to become backspace
+        toggleBackspaceSymbol();
+        const copyOfStringFormattedCurrentFirstNum = stringFormattedCurrentFirstNum;
+        clearValues();
+        stringFormattedCurrentFirstNum = copyOfStringFormattedCurrentFirstNum;
+    } 
 
     currentOperator = operator;
     updateDOM();
@@ -203,8 +210,7 @@ function operate() {
         }
 
         // Update backspace to become AC
-        backspaceNode.textContent = "AC";
-        backspaceNode.style.fontSize = "2rem";
+        toggleBackspaceSymbol();
 
         updatePreviousValues();
         updateCurrentExpression(total);
@@ -245,23 +251,43 @@ function clearValues() {
 }
 
 function backspace() {
-    if (stringFormattedCurrentSecondNum.length > 0) {
-        stringFormattedCurrentSecondNum = stringFormattedCurrentSecondNum.slice(0, -1);
+    // If there are previous values, clear all values
+    if (stringFormattedPreviousFirstNum.length > 0) {
+        clearValues();
     }
-    else if (currentOperator != "") {
-        currentOperator = "";
-    }
+
+    // Else, delete numbers/operator one by one, right to left
     else {
-        stringFormattedCurrentFirstNum = stringFormattedCurrentFirstNum.slice(0, -1);
-        if (stringFormattedCurrentFirstNum.length === 0) {
-            stringFormattedCurrentFirstNum = "0";
-            // Update backspace to become AC
-            backspaceNode.textContent = "AC";
-            backspaceNode.style.fontSize = "2rem";
+        if (stringFormattedCurrentSecondNum.length > 0) {
+        stringFormattedCurrentSecondNum = stringFormattedCurrentSecondNum.slice(0, -1);
+        }
+        else if (currentOperator != "") {
+            currentOperator = "";
+        }
+        else {
+            stringFormattedCurrentFirstNum = stringFormattedCurrentFirstNum.slice(0, -1);
+            if (stringFormattedCurrentFirstNum.length === 0) {
+                stringFormattedCurrentFirstNum = "0";
+                // Update backspace to become AC
+                toggleBackspaceSymbol();
+            }
         }
     }
 
     updateDOM();
+}
+
+function toggleBackspaceSymbol() {
+    if (backspaceNode.textContent === "AC") {
+        // Update AC symbol to become backspace
+        backspaceNode.textContent = "\u232B";
+        backspaceNode.style.fontSize = "3rem";
+    }
+    else {
+        // Update backspace to become AC
+        backspaceNode.textContent = "AC";
+        backspaceNode.style.fontSize = "2rem";
+    }
 }
 
 function updateDOM() {
