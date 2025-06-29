@@ -89,6 +89,11 @@ function checkEventId(event) {
 }
 
 function updateCurrentNumber(symbol) {
+    // If there is a previous expression and no current operator, clear all values
+    if (stringFormattedPreviousFirstNum.length > 0 && currentOperator.length === 0) {
+        clearValues();
+    }
+
     // Check if there is an operator, if not edit first number
     if (currentOperator.length === 0) {
         // If the first number already has a period, then exit function
