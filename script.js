@@ -71,6 +71,7 @@ function checkEventId(event) {
             }
             break;
         case "switch_sign":
+
             break;
         case "percent":
             break;
@@ -98,6 +99,9 @@ function checkEventId(event) {
             break;
         case "Enter":
             operate();
+            break;
+        case ".":
+            updateCurrentNumber(".");
             break;
         case "+":
             updateCurrentOperator("+");

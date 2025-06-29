@@ -65,6 +65,8 @@ body, html {
 	display: flex;
 	flex-direction:column;
 	gap: 7px;
+	overflow: hidden;
+	width: 321px;
 }
 
 .row {
